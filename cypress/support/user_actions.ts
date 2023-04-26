@@ -85,5 +85,12 @@ Cypress.Commands.add('makePayment', (nameOnCard: string, cardNumber: string, cvc
 })
 
 Cypress.Commands.add('downloadInvoice', () => {
-    cy.get('a').contains('Download Invoice').click()
+    cy.window().then((win) => {
+        const downloadButton = cy.get('a').contains('Download Invoice')
+        win.document.addEventListener('click', function clickListener() {
+            win.document.removeEventListener('click', clickListener)
+            setTimeout(() => win.location.reload(), 5000)
+        })
+        downloadButton.click({force: true})
+    })
 })
