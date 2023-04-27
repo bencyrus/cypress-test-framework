@@ -1,4 +1,4 @@
-describe('Demo', () => {
+describe('Shopping Cart Test', () => {
 
     before(() => {
         // Clear cookies and local storage, and visit the website
